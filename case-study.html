@@ -474,6 +474,46 @@
 
     /* PRINT */
     @media print {
+
+      /* Prevent sections from breaking across pages */
+      .section,
+      .experience-item,
+      .education-item,
+      .project-item,
+      .block {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Keep headings with their content */
+      h1,
+      h2,
+      h3,
+      h4 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Ensure paragraphs don’t get awkwardly split */
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+
+      /* Add controlled spacing between sections */
+      .section {
+        margin-bottom: 24px;
+      }
+
+      /* Force clean page breaks where needed (optional tuning) */
+      .page-break {
+        break-before: page;
+        page-break-before: always;
+      }
+    }
+
+    @media print {
       body {
         background: #fff;
       }
