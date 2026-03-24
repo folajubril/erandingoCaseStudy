@@ -475,69 +475,147 @@
     /* PRINT */
     @media print {
       body {
-        line-height: 1.6;
+        background: #fff;
+        line-height: 1.8;
+        font-size: 14px;
+        color: #000;
       }
 
-      /* Prevent ALL div blocks from splitting badly */
-      div {
-        break-inside: avoid;
-        page-break-inside: avoid;
-
+      .page {
+        padding: 0;
+        max-width: none;
       }
 
-      /* Prevent list items from splitting */
-      li {
-        break-inside: avoid;
-        page-break-inside: avoid;
+      /* Sections and Covers */
+      .cover {
+        min-height: 100vh;
+        page-break-after: always;
+        break-after: page;
+        padding-top: 25vh;
       }
 
-      /* Keep headings attached to content below */
+      .section {
+        page-break-before: always;
+        break-before: page;
+        padding-top: 30px;
+        padding-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 26px;
+        margin-bottom: 16px;
+        color: #000;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      .section-desc {
+        font-size: 16px;
+        margin-bottom: 30px;
+        color: #333;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      /* Restore grids to columns to save space */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Prevent UI elements from breaking */
+      div,
+      li,
+      p,
+      table,
       h1,
       h2,
       h3,
       h4 {
-        break-after: avoid;
-        page-break-after: avoid;
+        page-break-inside: avoid;
       }
 
-      /* Prevent ugly text splits */
-      p,
-      li {
-        orphans: 3;
-        widows: 3;
+      /* Reduce margin on cards for print */
+      .card {
+        margin-bottom: 24px !important;
+        border: 2px solid #E2E8F0;
+        padding: 24px;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        background: #fafafa !important;
       }
 
-      /* Add spacing to expand layout naturally */
-      div {
+      .card-title {
+        font-size: 15px;
         margin-bottom: 16px;
+        page-break-after: avoid;
+        break-after: avoid;
       }
 
-      /* Slightly increase spacing for top-level sections */
-      body>div {
+      .card p,
+      .card ul li {
+        font-size: 14px;
+        margin-bottom: 14px;
+        line-height: 1.8;
+      }
+
+      .timeline {
+        margin: 24px 0;
+      }
+
+      .tl-item {
         margin-bottom: 32px;
-      }
-    }
-
-    @media print {
-      body {
-        background: #fff;
-      }
-
-      .cover {
-        min-height: auto;
-        page-break-after: always;
-      }
-
-      .section,
-      .grid-2,
-      .grid-3,
-      .card {
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .card {
+        page-break-inside: avoid;
         break-inside: avoid;
+      }
+
+      .code-block {
+        font-size: 13.5px;
+        padding: 24px;
+        line-height: 1.8;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      table {
+        margin: 24px 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      table th,
+      table td {
+        font-size: 14px;
+        padding: 16px;
+        line-height: 1.6;
+      }
+
+      .diagram {
+        padding: 30px;
+        margin: 30px 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .arch-row {
+        display: flex;
+        /* Restore inline */
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .arch-box {
+        margin-bottom: 16px;
+        padding: 20px;
+        flex: 1;
+        min-width: 200px;
       }
     }
   </style>
