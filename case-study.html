@@ -474,18 +474,23 @@
 
     /* PRINT */
     @media print {
+      body {
+        line-height: 1.6;
+      }
 
-      /* Prevent sections from breaking across pages */
-      .section,
-      .experience-item,
-      .education-item,
-      .project-item,
-      .block {
+      /* Prevent ALL div blocks from splitting badly */
+      div {
         break-inside: avoid;
         page-break-inside: avoid;
       }
 
-      /* Keep headings with their content */
+      /* Prevent list items from splitting */
+      li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Keep headings attached to content below */
       h1,
       h2,
       h3,
@@ -494,22 +499,21 @@
         page-break-after: avoid;
       }
 
-      /* Ensure paragraphs don’t get awkwardly split */
+      /* Prevent ugly text splits */
       p,
       li {
         orphans: 3;
         widows: 3;
       }
 
-      /* Add controlled spacing between sections */
-      .section {
-        margin-bottom: 24px;
+      /* Add spacing to expand layout naturally */
+      div {
+        margin-bottom: 16px;
       }
 
-      /* Force clean page breaks where needed (optional tuning) */
-      .page-break {
-        break-before: page;
-        page-break-before: always;
+      /* Slightly increase spacing for top-level sections */
+      body>div {
+        margin-bottom: 32px;
       }
     }
 
