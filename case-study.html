@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Errandigo – Full-Stack Developer Case Study | Jubril</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1A1A2E;
+      --accent: #E94560;
+      --accent2: #0F3460;
+      --accent3: #533483;
+      --bg: #F8F9FC;
+      --card: #fff;
+      --border: #E2E8F0;
+      --text: #1A202C;
+      --muted: #718096;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* COVER */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 60%, var(--accent3) 100%);
+      color: #fff;
+      padding: 64px 72px;
+      page-break-after: always;
+    }
+
+    .cover-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: .6;
+      margin-bottom: 16px;
+    }
+
+    .cover h1 {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .cover h1 span {
+      color: #E94560;
+    }
+
+    .cover-sub {
+      font-size: 16px;
+      opacity: .75;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    .cover-meta strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .cover-stack {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    /* SECTION HEADERS */
+    .section {
+      padding: 48px 0 24px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 8px 0 32px;
+    }
+
+    /* CARDS & GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+    }
+
+    .card ul {
+      padding-left: 16px;
+    }
+
+    .card ul li {
+      margin-bottom: 5px;
+      font-size: 12.5px;
+      color: #4A5568;
+    }
+
+    .card p {
+      font-size: 12.5px;
+      color: #4A5568;
+    }
+
+    /* CHIPS */
+    .chip {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      margin: 2px;
+    }
+
+    .chip-green {
+      background: #D4EDDA;
+      color: #1B5E3B;
+    }
+
+    .chip-red {
+      background: #FDECEA;
+      color: #7F1D1D;
+    }
+
+    .chip-yellow {
+      background: #FFF9C4;
+      color: #7B5A00;
+    }
+
+    .chip-blue {
+      background: #DBEAFE;
+      color: #1E3A5F;
+    }
+
+    .chip-purple {
+      background: #EDE9FE;
+      color: #4C1D95;
+    }
+
+    /* FLOW */
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 16px 0;
+    }
+
+    .flow-step {
+      background: var(--accent2);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flow-arrow {
+      color: var(--muted);
+      font-size: 18px;
+      padding: 0 4px;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12px;
+    }
+
+    th {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      color: #4A5568;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #F7FAFC;
+    }
+
+    /* CODE */
+    .code-block {
+      background: #1A1A2E;
+      color: #E2E8F0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .code-block .method {
+      color: #E94560;
+      font-weight: 600;
+    }
+
+    .code-block .path {
+      color: #63B3ED;
+    }
+
+    .code-block .comment {
+      color: #718096;
+      font-style: italic;
+    }
+
+    /* DIAGRAM */
+    .diagram {
+      background: var(--primary);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 16px 0;
+      color: #fff;
+    }
+
+    .diagram-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: .5;
+      margin-bottom: 20px;
+    }
+
+    .arch-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .arch-box {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 12px 16px;
+      text-align: center;
+      min-width: 120px;
+      flex: 1;
+    }
+
+    .arch-box .arch-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .arch-box .arch-label {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .arch-box .arch-sub {
+      font-size: 10px;
+      opacity: .55;
+    }
+
+    .arch-arrow-down {
+      text-align: center;
+      font-size: 20px;
+      opacity: .4;
+      margin: 4px 0;
+    }
+
+    .arch-connector {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 4px 0;
+      font-size: 10px;
+      opacity: .45;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      border-left: 3px solid var(--accent);
+      background: #FFF5F5;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 12.5px;
+    }
+
+    .highlight.blue {
+      border-color: var(--accent2);
+      background: #EBF4FF;
+    }
+
+    .highlight.green {
+      border-color: #38A169;
+      background: #F0FFF4;
+    }
+
+    .highlight strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .tl-item .tl-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .tl-item p {
+      font-size: 12.5px;
+      color: #4A5568;
+      margin-top: 2px;
+    }
+
+    /* PRINT */
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .cover {
+        min-height: auto;
+        page-break-after: always;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+
+      .card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="cover-tag">Technical Case Study Response</div>
+    <h1>Building <span>Errandigo</span><br />Full-Stack Platform</h1>
+    <div class="cover-sub">Mobile · Backend · Admin Dashboard · Real-Time Operations</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div><strong>Candidate</strong>Jubril</div>
+      <div><strong>Role</strong>Full-Stack Developer (Web &amp; Mobile)</div>
+      <div><strong>Date</strong>March 2026</div>
+      <div><strong>Sections</strong>9 Sections · MVP to Day-90</div>
+    </div>
+    <div class="cover-stack">
+      <span class="tag">React Native + Expo</span>
+      <span class="tag">Node.js / NestJS</span>
+      <span class="tag">PostgreSQL + Redis</span>
+      <span class="tag">Socket.io</span>
+      <span class="tag">Next.js Admin</span>
+      <span class="tag">WhatsApp Business API</span>
+      <span class="tag">Firebase FCM</span>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ───────────────────────────── SECTION 1 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 1</div>
+      <h2>MVP Feature Scoping</h2>
+      <div class="section-desc">Defining what truly belongs in the first release — mobile app and admin dashboard.</div>
+      <hr class="divider" />
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="icon">📱</span>Mobile App MVP — Errandians</div>
+          <ul>
+            <li>App login (phone + OTP)</li>
+            <li>Availability toggle (Online / Offline)</li>
+            <li>Incoming order notification + Accept / Reject</li>
+            <li>Active delivery screen (pickup → drop-off)</li>
+            <li>Mark order Picked Up / Delivered</li>
+            <li>Basic in-app issue report</li>
+            <li>Earnings summary (today / this week)</li>
+            <li>Push notification for new orders</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="icon">🧑‍💼</span>Mobile App MVP — Managers</div>
+          <ul>
+            <li>View active orders in their zone</li>
+            <li>View rider status list (online/busy/offline)</li>
+            <li>Manual rider reassignment</li>
+            <li>Escalate an order to HQ</li>
+            <li>Mark order as exception (undeliverable)</li>
+            <li>Basic push notification for escalations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title"><span class="icon">🖥</span>Admin Dashboard MVP — HQ / Ops</div>
+        <div class="grid-2" style="margin-top:10px;gap:12px;">
+          <ul style="padding-left:16px;">
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Live orders table with status filter</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Order detail view + timeline</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Rider list — status, zone, current order</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Reassign rider to order</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Cancel order with reason</li>
+          </ul>
+          <ul style="padding-left:16px;">
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Escalation/issue log view</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Mark escalation resolved</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Basic daily stats (orders, completions,
+              failures)</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Manual order status override</li>
+            <li style="margin-bottom:5px;font-size:12.5px;color:#4A5568;">Simple search + filter</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="icon">🚫</span>Explicitly Out of Scope (MVP)</div>
+          <ul>
+            <li>Rider heatmaps / advanced analytics</li>
+            <li>In-app chat / messaging</li>
+            <li>Wallet &amp; payout system</li>
+            <li>Ratings &amp; reviews</li>
+            <li>Route optimisation engine</li>
+            <li>Customer-facing mobile app</li>
+            <li>Multi-city / zone management</li>
+            <li>Automated SLA enforcement</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="icon">⚙️</span>Intentional Simplifications</div>
+          <ul>
+            <li>Earnings: read-only display, no withdrawals</li>
+            <li>Map: static pickup/dropoff pins, no live routing</li>
+            <li>Analytics: daily counters only (no charts)</li>
+            <li>Auth: phone + OTP only, no social login</li>
+            <li>Notifications: FCM push, no SMS fallback yet</li>
+            <li>Assignment: manual by ops, no auto-dispatch</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 2 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 2</div>
+      <h2>Mobile App Design — Order Lifecycle (Rider Perspective)</h2>
+      <div class="section-desc">Designing for a rider on the road: distracted, low-end device, poor network.</div>
+      <hr class="divider" />
+
+      <h3 style="font-size:14px;margin-bottom:12px;color:var(--primary);">Order Flow</h3>
+      <div class="flow">
+        <div class="flow-step">🟢 Go Online</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">🔔 Incoming Order</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">✅ Accept</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">📍 Navigate to Pickup</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">📦 Mark Picked Up</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">🏠 Navigate to Drop-off</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">✔ Mark Delivered</div>
+      </div>
+
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-title">Availability Screen</div>
+          <p>Single large toggle: <strong>ONLINE / OFFLINE</strong>. Fullscreen tap-target. Status badge always visible
+            in header. No deep menus. Tap → confirmation toast → backend PATCH update. Offline = stops receiving orders
+            immediately.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Incoming Order Screen</div>
+          <p>Full-screen modal with loud sound + vibration. Shows: pickup address, drop-off address, estimated pay,
+            package type. Two large buttons: <strong>ACCEPT</strong> (green) / <strong>DECLINE</strong> (red). 30-second
+            auto-expire timer with count-down. Auto-declines and flags to ops if no action.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Active Delivery Screen</div>
+          <p>Current step highlighted (PICKUP ▸ IN TRANSIT ▸ DELIVERED). Address + contact shown. One action button at a
+            time: "I'm at Pickup" → "Mark Picked Up" → "Mark Delivered". Minimal scrolling. Works offline — queues
+            confirmations.</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;color:var(--primary);">State Machine</h3>
+      <div class="diagram">
+        <div class="diagram-title">Rider Order State</div>
+        <div
+          style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center;color:#E2E8F0;font-size:12px;">
+          <div style="background:rgba(255,255,255,0.1);padding:8px 14px;border-radius:8px;text-align:center;">
+            <div style="font-size:18px">🟢</div>AVAILABLE
+          </div>
+          <div style="opacity:.4;font-size:20px;">→</div>
+          <div
+            style="background:rgba(233,69,96,0.25);border:1px solid rgba(233,69,96,0.4);padding:8px 14px;border-radius:8px;text-align:center;">
+            <div style="font-size:18px">🔔</div>NOTIFIED
+          </div>
+          <div style="opacity:.4;font-size:20px;">→</div>
+          <div style="background:rgba(255,255,255,0.1);padding:8px 14px;border-radius:8px;text-align:center;">
+            <div style="font-size:18px">🛵</div>ASSIGNED
+          </div>
+          <div style="opacity:.4;font-size:20px;">→</div>
+          <div style="background:rgba(255,255,255,0.1);padding:8px 14px;border-radius:8px;text-align:center;">
+            <div style="font-size:18px">📦</div>IN TRANSIT
+          </div>
+          <div style="opacity:.4;font-size:20px;">→</div>
+          <div
+            style="background:rgba(56,161,105,0.25);border:1px solid rgba(56,161,105,0.4);padding:8px 14px;border-radius:8px;text-align:center;">
+            <div style="font-size:18px">✅</div>COMPLETED
+          </div>
+        </div>
+        <div style="margin-top:16px;font-size:10px;opacity:.4;text-align:center;">Any state + timeout/error → EXCEPTION
+          (flags to ops) → back to AVAILABLE after resolution</div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;color:var(--primary);">Real-Time Update Strategy</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Primary: WebSocket (Socket.io)</div>
+          <p>Persistent connection when app is foreground. Server emits order events to rider's socket room. Instant
+            updates — no polling overhead. Reconnects automatically on disconnect with exponential backoff.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Fallback: FCM Push + Short Poll</div>
+          <p>When app is background/killed → FCM push notification wakes app. On foreground restore: single REST call to
+            sync latest order state. Short-poll (10s) only when WebSocket is confirmed dead — avoids battery drain.</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;color:var(--primary);">Failure Handling</h3>
+      <table>
+        <tr>
+          <th>Failure</th>
+          <th>Detection</th>
+          <th>Response</th>
+        </tr>
+        <tr>
+          <td><strong>No Network</strong></td>
+          <td>NetInfo API monitors connectivity</td>
+          <td>Offline banner shown. Status updates queued locally (AsyncStorage). Auto-sync when reconnected. Order
+            state readable from local cache.</td>
+        </tr>
+        <tr>
+          <td><strong>App Crash / Kill</strong></td>
+          <td>Backend tracks last heartbeat per rider</td>
+          <td>Active order state preserved on backend. On next app open: resume screen shown with current order. No
+            duplicate assignment — backend is source of truth.</td>
+        </tr>
+        <tr>
+          <td><strong>Duplicate Orders</strong></td>
+          <td>Idempotency key on every status update</td>
+          <td>Each action (Accept, Picked Up, Delivered) uses a unique key. Backend rejects duplicates with 409. App
+            ignores duplicate errors — treats as success.</td>
+        </tr>
+        <tr>
+          <td><strong>Order Accept Race</strong></td>
+          <td>Optimistic lock on order record</td>
+          <td>First rider to commit wins. Others get "Order no longer available" toast and return to AVAILABLE state.
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 3 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 3</div>
+      <h2>Admin Dashboard Design</h2>
+      <div class="section-desc">Operations tool — fast decision-making, no clutter, real-time visibility.</div>
+      <hr class="divider" />
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="icon">📋</span>Core Modules</div>
+          <ul>
+            <li><strong>Live Orders</strong> — real-time table, status-coloured rows</li>
+            <li><strong>Order Detail</strong> — full timeline, rider info, actions</li>
+            <li><strong>Rider Status</strong> — who's online, what they're doing</li>
+            <li><strong>Escalations</strong> — flagged orders needing attention</li>
+            <li><strong>Daily Stats</strong> — counters only (orders, SLA, fails)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="icon">⚡</span>Key Design Constraints</div>
+          <ul>
+            <li>Every critical action ≤ 2 clicks</li>
+            <li>Colour-coded statuses (red=problem, green=OK)</li>
+            <li>Keyboard shortcuts for power users</li>
+            <li>No modal-heavy flows — inline actions</li>
+            <li>Real-time row updates without full page reload</li>
+            <li>Sticky header + scrollable body for long tables</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Live Orders Table — Column Layout</h3>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Customer</th>
+          <th>Pickup</th>
+          <th>Drop-off</th>
+          <th>Rider</th>
+          <th>Status</th>
+          <th>Age</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>#1042</td>
+          <td>Adaeze B.</td>
+          <td>Lekki Phase 1</td>
+          <td>VI Office</td>
+          <td>Emeka R.</td>
+          <td><span class="chip chip-blue">In Transit</span></td>
+          <td>18m</td>
+          <td>View · Reassign</td>
+        </tr>
+        <tr>
+          <td>#1043</td>
+          <td>Tunde A.</td>
+          <td>Yaba Market</td>
+          <td>Surulere</td>
+          <td>—</td>
+          <td><span class="chip chip-red">Unassigned</span></td>
+          <td>4m</td>
+          <td>View · Assign</td>
+        </tr>
+        <tr>
+          <td>#1044</td>
+          <td>Kemi S.</td>
+          <td>Ikeja GRA</td>
+          <td>Maryland</td>
+          <td>Bola F.</td>
+          <td><span class="chip chip-yellow">Exception</span></td>
+          <td>42m</td>
+          <td>View · Escalate</td>
+        </tr>
+      </table>
+
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-title">Order Detail View</div>
+          <ul>
+            <li>Order ID, created timestamp, WhatsApp origin</li>
+            <li>Full status timeline with timestamps</li>
+            <li>Current rider + contact + zone</li>
+            <li>Pickup &amp; drop-off addresses</li>
+            <li>Action panel: Reassign / Cancel / Override Status</li>
+            <li>Issue log if any reported</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Admin Actions</div>
+          <ul>
+            <li><strong>Reassign Rider</strong> — dropdown of available riders in zone → confirm</li>
+            <li><strong>Cancel Order</strong> — reason selector → notifies customer via WhatsApp</li>
+            <li><strong>Override Status</strong> — manual correction with audit log entry</li>
+            <li><strong>Resolve Escalation</strong> — mark resolved + add note</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Rider Status View</h3>
+      <table>
+        <tr>
+          <th>Rider</th>
+          <th>Zone</th>
+          <th>Status</th>
+          <th>Current Order</th>
+          <th>Last Ping</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>Emeka R.</td>
+          <td>Lekki</td>
+          <td><span class="chip chip-blue">In Transit</span></td>
+          <td>#1042</td>
+          <td>1m ago</td>
+          <td>View Order</td>
+        </tr>
+        <tr>
+          <td>Bola F.</td>
+          <td>Ikeja</td>
+          <td><span class="chip chip-yellow">Exception</span></td>
+          <td>#1044</td>
+          <td>4m ago</td>
+          <td>Reassign · Escalate</td>
+        </tr>
+        <tr>
+          <td>Chidi O.</td>
+          <td>Yaba</td>
+          <td><span class="chip chip-green">Available</span></td>
+          <td>—</td>
+          <td>30s ago</td>
+          <td>Assign Order</td>
+        </tr>
+        <tr>
+          <td>Ngozi A.</td>
+          <td>VI</td>
+          <td><span class="chip chip-red">Offline</span></td>
+          <td>—</td>
+          <td>22m ago</td>
+          <td>—</td>
+        </tr>
+      </table>
+      <div class="highlight" style="margin-bottom:8px;">
+        <strong>Filtering &amp; Search</strong>
+        Every table supports: status filter (chips), zone filter (dropdown), free-text search by order ID / rider name /
+        address. Filters persist in URL params so ops can share a specific view with a teammate.
+      </div>
+
+      <div class="highlight blue">
+        <strong>Real-Time Updates</strong>
+        Admin dashboard connects via WebSocket. Order rows update in-place (no flash/reload) when status changes.
+        Escalation badge count updates live. New unassigned orders appear at top with 5-second auto-highlight.
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 4 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 4</div>
+      <h2>Mobile ↔ Backend ↔ Admin Interaction</h2>
+      <div class="section-desc">How the three layers communicate, stay in sync, and handle real-time events.</div>
+      <hr class="divider" />
+
+      <div class="diagram">
+        <div class="diagram-title">System Architecture</div>
+        <div class="arch-row">
+          <div class="arch-box">
+            <div class="arch-icon">💬</div>
+            <div class="arch-label">WhatsApp</div>
+            <div class="arch-sub">Customer Layer</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-icon">📱</div>
+            <div class="arch-label">Rider App</div>
+            <div class="arch-sub">React Native + Expo</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-icon">🖥</div>
+            <div class="arch-label">Admin Dashboard</div>
+            <div class="arch-sub">Next.js</div>
+          </div>
+        </div>
+        <div class="arch-arrow-down" style="font-size:14px;letter-spacing:20px;opacity:.35;">↓ &nbsp;&nbsp;&nbsp;&nbsp;
+          ↓ &nbsp;&nbsp;&nbsp;&nbsp; ↓</div>
+        <div class="arch-row">
+          <div class="arch-box" style="flex:3;background:rgba(233,69,96,0.15);border-color:rgba(233,69,96,0.3);">
+            <div class="arch-icon">⚙️</div>
+            <div class="arch-label">NestJS API</div>
+            <div class="arch-sub">REST + WebSocket Gateway · Business Logic · Auth · Queue</div>
+          </div>
+        </div>
+        <div class="arch-arrow-down" style="font-size:14px;letter-spacing:40px;opacity:.35;">↓
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓</div>
+        <div class="arch-row">
+          <div class="arch-box">
+            <div class="arch-icon">🐘</div>
+            <div class="arch-label">PostgreSQL</div>
+            <div class="arch-sub">Orders, Riders, Users, Audit</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-icon">🔺</div>
+            <div class="arch-label">Redis</div>
+            <div class="arch-sub">WebSocket state, Queues, Cache</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-icon">🔔</div>
+            <div class="arch-label">FCM</div>
+            <div class="arch-sub">Push Notifications</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Order Lifecycle — Data Flow</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">1. Order Created</div>
+          <p>Customer messages WhatsApp → Timi AI parses → POST /orders → record created (status: PENDING) → Socket.io
+            emits <code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.new</code> to Admin room +
+            nearest available rider's room.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">2. Rider Assigned</div>
+          <p>Ops selects rider in Admin → PATCH /orders/:id/assign → DB updated (status: ASSIGNED, rider_id set) → FCM
+            push + Socket event sent to rider. Admin table updates in real-time.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">3. Rider Accepts</div>
+          <p>Rider taps Accept → PATCH /orders/:id/status {status: ACCEPTED} with idempotency key → DB locked → status:
+            ASSIGNED confirmed → both Admin + other systems notified.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">4. In Transit</div>
+          <p>Rider taps "Mark Picked Up" → PATCH status: IN_TRANSIT → timestamp recorded → Admin row updates colour.
+            Customer notified on WhatsApp automatically via webhook.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">5. Completed</div>
+          <p>Rider taps "Mark Delivered" → PATCH status: COMPLETED → timestamps, rider earnings log updated → Socket
+            event closes tracking. WhatsApp delivery confirmation sent to customer.</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Event Flow — What Triggers Updates?</h3>
+      <table>
+        <tr>
+          <th>Trigger</th>
+          <th>Actor</th>
+          <th>Event Emitted</th>
+          <th>Who Receives It</th>
+        </tr>
+        <tr>
+          <td>Order created via WhatsApp</td>
+          <td>Timi AI / Webhook</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.new</code></td>
+          <td>Admin room (all connected ops), nearest available rider</td>
+        </tr>
+        <tr>
+          <td>Ops assigns rider</td>
+          <td>Admin Dashboard</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.assigned</code></td>
+          <td>Rider's socket room + FCM push if app is background</td>
+        </tr>
+        <tr>
+          <td>Rider accepts order</td>
+          <td>Mobile App</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.status_changed</code></td>
+          <td>Admin room, WhatsApp webhook (customer notified)</td>
+        </tr>
+        <tr>
+          <td>Rider marks picked up</td>
+          <td>Mobile App</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.in_transit</code></td>
+          <td>Admin room + WhatsApp customer update</td>
+        </tr>
+        <tr>
+          <td>Rider marks delivered</td>
+          <td>Mobile App</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">order.completed</code></td>
+          <td>Admin room, WhatsApp confirmation, earnings log</td>
+        </tr>
+        <tr>
+          <td>Rider reports issue</td>
+          <td>Mobile App</td>
+          <td><code style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">escalation.created</code></td>
+          <td>Admin escalation badge increments live</td>
+        </tr>
+      </table>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">API Design — Key Endpoints</h3>
+      <div class="code-block">
+        <span class="comment">// Orders</span>
+        <span class="method">POST</span> <span class="path">/api/orders</span> <span class="comment">— create order
+          (WhatsApp webhook → Timi)</span>
+        <span class="method">GET</span> <span class="path">/api/orders</span> <span class="comment">— list with filters
+          (status, zone, date)</span>
+        <span class="method">GET</span> <span class="path">/api/orders/:id</span> <span class="comment">— order detail +
+          timeline</span>
+        <span class="method">PATCH</span> <span class="path">/api/orders/:id/status</span> <span class="comment">— rider
+          status update (idempotency-key header)</span>
+        <span class="method">PATCH</span> <span class="path">/api/orders/:id/assign</span> <span class="comment">— admin
+          reassign rider</span>
+        <span class="method">DELETE</span> <span class="path">/api/orders/:id</span> <span class="comment">— cancel with
+          reason</span>
+
+        <span class="comment">// Riders</span>
+        <span class="method">GET</span> <span class="path">/api/riders</span> <span class="comment">— list with status,
+          zone</span>
+        <span class="method">PATCH</span> <span class="path">/api/riders/me/status</span> <span class="comment">— toggle
+          availability</span>
+        <span class="method">POST</span> <span class="path">/api/riders/me/heartbeat</span> <span class="comment">— 30s
+          keep-alive ping</span>
+
+        <span class="comment">// Escalations</span>
+        <span class="method">POST</span> <span class="path">/api/escalations</span> <span class="comment">— create issue
+          report</span>
+        <span class="method">PATCH</span> <span class="path">/api/escalations/:id/resolve</span> <span class="comment">—
+          admin resolves</span>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Consistency Strategy</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Backend = Single Source of Truth</div>
+          <p>All status changes go through the API — never directly from app to app. Mobile and Admin are read+write
+            clients. On reconnect, both fetch latest state from REST before resuming WebSocket sync.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Idempotency + Optimistic Locking</div>
+          <p>Every mutation includes an idempotency key. Order state transitions validated server-side (cannot go
+            COMPLETED → IN_TRANSIT). Audit log records every change with actor, timestamp, and previous state.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 5 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 5</div>
+      <h2>Performance &amp; Reliability</h2>
+      <div class="section-desc">Diagnosing slow apps, lagging dashboards, and delayed orders.</div>
+      <hr class="divider" />
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Mobile Bottlenecks</div>
+          <ul>
+            <li>Large JS bundle → slow cold start</li>
+            <li>Unoptimised images (no WebP)</li>
+            <li>Re-renders on every socket event</li>
+            <li>Blocking API calls on main thread</li>
+            <li>No local caching → every open = re-fetch</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">API Bottlenecks</div>
+          <ul>
+            <li>No DB indexes on order status/rider_id</li>
+            <li>N+1 queries in order list endpoint</li>
+            <li>Synchronous WhatsApp webhook processing</li>
+            <li>No query result caching (Redis)</li>
+            <li>Too many WebSocket broadcasts (no rooms)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Dashboard Bottlenecks</div>
+          <ul>
+            <li>Full table re-render on any socket event</li>
+            <li>Fetching all orders (no pagination)</li>
+            <li>Heavy charting library loaded on first paint</li>
+            <li>No skeleton loaders → perceived slowness</li>
+            <li>Admin state not persisted across refreshes</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Diagnosis Approach</h3>
+      <table>
+        <tr>
+          <th>Layer</th>
+          <th>Tool</th>
+          <th>What I Check</th>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td>Expo DevTools + Flipper</td>
+          <td>JS bundle size, render counts, API response times, network calls</td>
+        </tr>
+        <tr>
+          <td>Backend</td>
+          <td>Datadog / Sentry + EXPLAIN ANALYZE</td>
+          <td>Slow queries, error rates, endpoint p95 latency, socket connection count</td>
+        </tr>
+        <tr>
+          <td>Database</td>
+          <td>pg_stat_statements</td>
+          <td>Missing indexes, sequential scans on large tables, lock contention</td>
+        </tr>
+        <tr>
+          <td>Dashboard</td>
+          <td>Chrome DevTools Perf tab</td>
+          <td>Long tasks, layout thrashing, unnecessary re-renders (React DevTools)</td>
+        </tr>
+      </table>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Optimisation Priority (Impact vs Effort)</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">First — DB Indexes</div>
+          <p>Add indexes on <code
+              style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">orders(status, created_at, rider_id)</code>.
+            Fastest win — zero code changes, massive query improvement.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Second — API Pagination</div>
+          <p>Limit all list endpoints to 50 records + cursor pagination. Prevents admin from loading 10,000 orders into
+            a table.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Third — Redis Caching</div>
+          <p>Cache rider list and active orders for 5 seconds. Reduces database load by 80% during peak ops.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Fourth — Mobile Code Splitting</div>
+          <p>Lazy-load Manager screens. Errandian flow loads first. Reduces initial bundle by ~30%.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Fifth — Targeted Socket Rooms</div>
+          <p>Emit events only to the relevant rider's room, not all connections. Eliminate broadcast noise.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 6 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 6</div>
+      <h2>Scope Creep Scenario</h2>
+      <div class="section-desc">Founder requests advanced analytics + rider heatmaps pre-launch. Engineering flags delay
+        risk.</div>
+      <hr class="divider" />
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">My Response to Founder</div>
+          <p style="margin-bottom:10px;">I acknowledge the value of heatmaps and analytics — they are genuinely useful
+            for operations at scale. However, building them <em>before launch</em> risks delaying the core system that
+            makes them meaningful.</p>
+          <p>I'd say: <em>"Let's collect the data from day one, so we can build the analytics on top of real operational
+              data after launch — not dummy data."</em></p>
+        </div>
+        <div class="card">
+          <div class="card-title">What I Push Back On</div>
+          <ul>
+            <li>Building a heatmap before we have a single live order</li>
+            <li>Complex charting dashboards blocking rider app completion</li>
+            <li>Real-time analytics infrastructure (Kafka, ClickHouse) pre-MVP</li>
+            <li>Any feature that shares engineers with the critical path</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:12px;">
+        <div class="card">
+          <div class="card-title">What I Ship Instead (Now)</div>
+          <ul>
+            <li>Basic daily counters on the admin home screen (orders, completions, failures)</li>
+            <li>CSV export endpoint — ops can analyse in Google Sheets</li>
+            <li>All raw events stored (orders table with full timestamps) for future analytics</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">What I Defer (Post-Launch)</div>
+          <ul>
+            <li>Rider heatmaps using real GPS/zone data from live orders</li>
+            <li>Performance charts (order volume, completion rate trends)</li>
+            <li>Automated SLA alerts</li>
+            <li>Exportable PDF reports</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight green">
+        <strong>Delivery Protection Principle</strong>
+        I protect the launch date by ring-fencing the critical path. Any new request gets assessed: does this block
+        delivery? If yes → defer. If not → lightweight version only. The goal is to launch with a working core, then
+        iterate with real data.
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 7 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 7</div>
+      <h2>Failure Scenario — Real-Time Ops (Launch Day)</h2>
+      <div class="section-desc">Orders not showing on rider app · Admin shows inconsistent data · Support overwhelmed.
+      </div>
+      <hr class="divider" />
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">Step 1 — Check What's Alive</div>
+          <p>Immediately open the monitoring dashboard (Datadog / Sentry). Check: Is the API server up? Is the database
+            reachable? Are WebSocket connections dropping? What does the error rate graph look like in the last 15
+            minutes?</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Step 2 — Isolate the Layer</div>
+          <p><strong>Test REST directly:</strong> Hit <code
+              style="background:#EDF2F7;padding:1px 5px;border-radius:3px;">GET /api/orders</code> via Postman — if it
+            returns correct data, backend DB is fine. <br /><strong>Test WebSocket:</strong> Connect a test client — if
+            events aren't flowing, the socket gateway or Redis pub/sub is the issue. <br /><strong>Test Mobile
+              specifically:</strong> Check if FCM tokens are registered. Check if the app is connected to the right
+            environment (prod vs staging URL).</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Step 3 — Common Culprits to Check</div>
+          <p>Redis connection pool exhausted (WebSocket state breaks) · Database connection limit hit under load ·
+            WhatsApp webhook routing broken (orders not created) · Wrong API base URL in production build · Missing
+            environment variable in prod deployment.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Step 4 — Temporary Stabilisation</div>
+          <p><strong>Disable WebSocket:</strong> Switch mobile app to 10-second polling mode via a feature flag. Slower,
+            but reliable. <br /><strong>Ops workaround:</strong> Give ops team direct DB read access or a simple
+            internal admin query page for order lookup while real-time is broken. <br /><strong>WhatsApp
+              fallback:</strong> Have Timi send customers a manual "order received" message while routing is
+            investigated.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Step 5 — Restore + Post-Mortem</div>
+          <p>Once root cause identified: apply fix, deploy, verify with smoke tests. Document the failure timeline. Add
+            alerting thresholds (e.g., alert if zero orders processed in 5 minutes). Add health check endpoint polled
+            every 60s.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 8 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 8</div>
+      <h2>WhatsApp-first + Mobile + Web Strategy</h2>
+      <div class="section-desc">Three-layer architecture: Customer (WhatsApp) → Execution (Mobile) → Control (Web).
+      </div>
+      <hr class="divider" />
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">💬 WhatsApp — Customer Layer</div>
+          <ul>
+            <li>Zero-install. Customer is already on WhatsApp</li>
+            <li>Timi AI handles order intake via NLP</li>
+            <li>Automated status updates to customer</li>
+            <li>Human handoff for edge cases</li>
+          </ul>
+          <div style="margin-top:10px;"><span class="chip chip-green">Low friction</span><span
+              class="chip chip-green">High reach</span></div>
+          <div
+            style="margin-top:8px;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;">
+            Risks</div>
+          <ul style="margin-top:4px;">
+            <li>WhatsApp API rate limits + policy changes out of our control</li>
+            <li>Timi misparse → wrong order details → ops overhead</li>
+            <li>Limited UI makes complex orders (multi-stop) hard to capture</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">📱 Mobile — Execution Layer</div>
+          <ul>
+            <li>Errandians manage full order lifecycle</li>
+            <li>Managers oversee their zone in real-time</li>
+            <li>Works offline + low-end devices</li>
+            <li>Push notifications for instant alerting</li>
+          </ul>
+          <div
+            style="margin-top:8px;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;">
+            Risks</div>
+          <ul style="margin-top:4px;">
+            <li>Rider must install and keep app updated</li>
+            <li>Low-end Android fragmentation causes inconsistent behaviour</li>
+            <li>Background kill on budget phones breaks push delivery</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">🖥 Web — Control Layer</div>
+          <ul>
+            <li>HQ has full visibility + override capability</li>
+            <li>Complex actions (reassign, cancel, escalate)</li>
+            <li>Historical data and reporting</li>
+            <li>No device install constraint</li>
+          </ul>
+          <div
+            style="margin-top:8px;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;">
+            Risks</div>
+          <ul style="margin-top:4px;">
+            <li>Browser tab-close breaks WebSocket — requires reconnect logic</li>
+            <li>Ops dependency — if dashboard is down, ops team is blind</li>
+            <li>Real-time state divergence if ops has stale tab open</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin:20px 0 12px;">Scaling Challenges &amp; When Architecture Must Evolve</h3>
+      <table>
+        <tr>
+          <th>Challenge</th>
+          <th>Trigger Point</th>
+          <th>Evolution</th>
+        </tr>
+        <tr>
+          <td>WebSocket connections</td>
+          <td>&gt; 500 concurrent riders</td>
+          <td>Move to Redis cluster + socket.io sticky sessions / migrate to managed WS service</td>
+        </tr>
+        <tr>
+          <td>WhatsApp rate limits</td>
+          <td>&gt; 1,000 msgs/day</td>
+          <td>Implement message queue (Bull/BullMQ) with retry logic</td>
+        </tr>
+        <tr>
+          <td>Order volume</td>
+          <td>&gt; 10k orders/day</td>
+          <td>Introduce read replicas for admin queries; separate write/read DB paths</td>
+        </tr>
+        <tr>
+          <td>Multi-city expansion</td>
+          <td>2nd city launch</td>
+          <td>Zone-based architecture; orders scoped to zone; separate socket rooms per city</td>
+        </tr>
+        <tr>
+          <td>Timi AI complexity</td>
+          <td>Ambiguous orders increase</td>
+          <td>Add structured conversation flows + human-in-the-loop escalation path</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ───────────────────────────── SECTION 9 ───────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Section 9</div>
+      <h2>30 – 60 – 90 Day Plan</h2>
+      <div class="section-desc">What I do in my first three months at Errandigo.</div>
+      <hr class="divider" />
+
+      <div class="grid-3">
+        <div class="card" style="border-top:3px solid var(--accent);">
+          <div class="card-title">🔍 First 30 Days — Audit</div>
+          <ul>
+            <li>Read all existing code, infra, and docs</li>
+            <li>Map where the mobile app's critical user flow breaks</li>
+            <li>Identify which APIs have no error handling</li>
+            <li>Find missing DB indexes and slow queries</li>
+            <li>Understand the WhatsApp ↔ backend flow end-to-end</li>
+            <li>Shadow an ops session to see real pain points</li>
+            <li>Document what I find — no big changes yet</li>
+          </ul>
+          <div class="highlight" style="margin-top:12px;background:#FFF5F5;border-color:var(--accent);">
+            <strong>What breaks immediately:</strong> Missing error boundaries in the mobile app. API calls with no
+            timeout. Orders stuck in a state with no unlock mechanism.
+          </div>
+        </div>
+        <div class="card" style="border-top:3px solid #0F3460;">
+          <div class="card-title">🛠 First 60 Days — Stabilise</div>
+          <ul>
+            <li>Add DB indexes on all hot query paths</li>
+            <li>Implement API pagination across all list endpoints</li>
+            <li>Add proper error handling + Sentry error tracking</li>
+            <li>Fix offline resilience in the rider app (queue + retry)</li>
+            <li>Add basic health check and uptime monitoring</li>
+            <li>Ship idempotency keys on all order mutations</li>
+            <li>Create a staging environment that mirrors production</li>
+          </ul>
+          <div class="highlight blue" style="margin-top:12px;">
+            <strong>Outcome:</strong> On-call incidents drop. Ops team trusts the dashboard. Riders stop complaining
+            about lost orders.
+          </div>
+        </div>
+        <div class="card" style="border-top:3px solid #533483;">
+          <div class="card-title">🚀 First 90 Days — Improve</div>
+          <ul>
+            <li>Auto-dispatch logic (nearest available rider to order)</li>
+            <li>WhatsApp notification upgrades (rich templates)</li>
+            <li>Admin dashboard analytics (order trends, SLA %)</li>
+            <li>Rider earnings dashboard (accurate, real-time)</li>
+            <li>Documented API contracts (Swagger / Postman)</li>
+            <li>CI/CD pipeline with automated smoke tests</li>
+            <li>Mobile app performance profiling + improvements</li>
+          </ul>
+          <div class="highlight green" style="margin-top:12px;">
+            <strong>Outcome:</strong> The platform is measurably faster, more reliable, and the ops team has the
+            visibility they need to scale.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div
+      style="margin-top:48px;padding:32px;background:var(--primary);border-radius:12px;color:#fff;text-align:center;">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.4;margin-bottom:12px;">Summary
+      </div>
+      <p style="font-size:15px;font-weight:600;margin-bottom:8px;">I build systems that work in the real world.</p>
+      <p style="font-size:12.5px;opacity:.65;max-width:600px;margin:0 auto;">
+        My approach to Errandigo prioritises reliability over complexity — offline-resilient mobile flows, real-time
+        admin visibility, and a backend built for fast iteration. I protect the MVP from scope creep, debug methodically
+        under pressure, and make decisions that scale without over-engineering.
+      </p>
+      <div style="margin-top:20px;font-size:11px;opacity:.4;">Jubril · Full-Stack Developer · March 2026</div>
+    </div>
+
+  </div><!-- /page -->
+</body>
+
+</html>
